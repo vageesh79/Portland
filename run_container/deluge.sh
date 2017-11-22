@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # https://hub.docker.com/r/paulpoco/arch-delugevpn/
 
 # get PIA credentials
-read -p 'Username for PIA: ' PIAUser
-read -p 'Password for PIA: ' PIAPass
+read -pr 'Username for PIA: ' PIAUser
+read -prs 'Password for PIA: ' PIAPass
 
 # Stand Up new deluge container
 docker run -d \
@@ -14,9 +13,10 @@ docker run -d \
     --network=macvlan0 \
     --ip="$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).64" \
     --hostname=deluge \
-    --restart="unless-stopped"
+    --restart="unless-stopped" \
     --mount type=volume,source=deluge-volume,target=/config \
-    --mount type=bind,source=/vpool/library/temp,target=/data \
+    --mount type=bind,source=/vpool/library/temp/.deluge,target=/data/temp \
+    --mount type=bind,source=/vpool/library,target=/data/library \
     --mount type=bind,source=/etc/localtime,target=/etc/localtime:ro \
     -e VPN_ENABLED=yes \
     -e VPN_PROV=pia \
