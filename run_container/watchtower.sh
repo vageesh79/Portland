@@ -6,6 +6,4 @@
 docker run -d  \
   --name watchtower \
   --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-  --schedule="0 2 * * *" \
-  --cleanup \
-  v2tec/watchtower:latest
+  v2tec/watchtower:latest --schedule="0 2 * * *" --cleanup
