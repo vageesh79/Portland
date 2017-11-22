@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://hub.docker.com/r/dperson/samba/
 
 # Stand-up new container

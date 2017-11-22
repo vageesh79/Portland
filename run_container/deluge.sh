@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://hub.docker.com/r/paulpoco/arch-delugevpn/
 
 # get PIA credentials

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # System configuration for my home server (run as root)(Ubuntu Server)
 # Create ZFS pool from scratch and create desired subvolumes/directories
 

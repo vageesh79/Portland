@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://hub.docker.com/r/plexinc/pms-docker/
 # https://www.plex.tv/claim/
 

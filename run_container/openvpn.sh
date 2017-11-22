@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker run -d \
     --cap-add=NET_ADMIN \
     --device=/dev/net/tun \
