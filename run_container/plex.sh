@@ -1,10 +1,9 @@
 #!/bin/bash
-
 # https://hub.docker.com/r/plexinc/pms-docker/
 # https://www.plex.tv/claim/
 
 # Get Plex account claim token from user
-read -p 'Claim Token For Plex Account: ' CToken
+read -prs 'Claim Token For Plex Account: ' CToken
 
 # Stand Up New container
 docker run -d  \
@@ -25,10 +24,10 @@ docker run -d  \
 
 # Install WebTools Plugin For plex
 ## Create Script to pass to container
-docker exec plex bash -c ' \
+docker exec plex bash -c " \
   apt update; \
   apt install -y unzip wget; \
-  wget https://github.com/$(wget https://github.com/ukdtom/WebTools.bundle/releases/latest -O - | egrep '/.*/.*/.*zip' -o); \
+  wget https://github.com/$(wget https://github.com/ukdtom/WebTools.bundle/releases/latest -O - | grep -e '/.*/.*/.*zip' -o); \
   unzip WebTools.bundle.zip; \
   mv WebTools.bundle /config/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/; \
-  chown -R plex:plex /config/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/WebTools.bundle'
+  chown -R plex:plex /config/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/WebTools.bundle"

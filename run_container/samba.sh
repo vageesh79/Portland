@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # https://hub.docker.com/r/dperson/samba/
 
 # Stand-up new container
@@ -19,7 +18,7 @@ docker run -d \
   dperson/samba
 
 # Create smb.conf file
-cat << 'EOF' >> smb.conf
+cat << EOF >> smb.conf
   [global]
   workgroup = WORKGROUP
   server string = Samba Server %v

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # https://hub.docker.com/r/eclipse/che/
 # https://www.eclipse.org/che/docs/setup/getting-started-multi-user/index.html
 
