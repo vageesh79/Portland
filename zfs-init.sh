@@ -12,11 +12,11 @@ lblsk
 
 # Get ZFS Options
 read -p 'ZFS - Specify desired pool name: ' RName
-read -p 'ZFS - Specify raid type (raidz, raidz2, etc..): ' RType 
+read -p 'ZFS - Specify raid type (raidz, raidz2, etc..): ' RType
 read -p 'ZFS - Specify drives to add to raid (EX: /dev/sdb /dev/sdc /dev/sda): ' RDevices
 
 # Create ZFS Raid
-zpool 
+zpool
 
 # Create ZFS Subvolumes and Additional Directories
 zfs create $RName/docker

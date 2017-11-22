@@ -20,7 +20,7 @@ docker run -d  \
   -e PLEX_UID="6846" \
   -e PLEX_GID="6846" \
   plexinc/pms-docker:plexpass
- 
+
 # Install WebTools Plugin For plex
 ## Create Script to pass to container
 docker exec plex bash -c ' \

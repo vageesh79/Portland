@@ -15,7 +15,7 @@ docker run -d \
   --mount type=bind,source=/vpool/library,target=/data/library \
   --mount type=bind,source=/vpool/backups,target=/data/backups \
   dperson/samba
-  
+
 # Create smb.conf file
 cat << 'EOF' >> smb.conf
   [global]
@@ -59,6 +59,3 @@ docker restart samba
 
 # Cleanup
 rm smb.conf
-
-
-  
