@@ -13,6 +13,7 @@ read -prs 'Public Key for SSH: ' sshPubKey
 
 
 # get SNMTP credentials
+read -pr 'Email to Send Notifications: ' email
 #read -pr 'SMTP User: ' smtpUser
 #read -prs 'SMTP Password: ' smtpPass
 
@@ -44,6 +45,34 @@ sed -i  'PubkeyAuthentication/ c\PubkeyAuthentication yes' /etc/ssh/sshd_config
 sed -i  'AuthorizedKeysFile/ c\AuthorizedKeysFile %h/.ssh/authorized_keys' /etc/ssh/sshd_config
 sed -i  'PasswordAuthentication/ c\PasswordAuthentication no' /etc/ssh/sshd_config
 systemctl restart sshd
+
+# Setup mail for notifications
+
+# Setup Automatic updates
+apt install -y unattended-upgrades
+cat <<'EOF' > /etc/apt/apt.conf.d/50unattended-upgrades
+    Unattended-Upgrade::Allowed-Origins {
+        "${distro_id}:${distro_codename}";
+        "${distro_id}:${distro_codename}-security";
+        "${distro_id}ESM:${distro_codename}";
+        "${distro_id}:${distro_codename}-updates";
+        "Docker:${distro_codename}";
+    };
+    Unattended-Upgrade::Mail "%email%";
+    Unattended-Upgrade::MailOnlyOnError "true";
+    Unattended-Upgrade::Remove-Unused-Dependencies "true";
+    Unattended-Upgrade::Automatic-Reboot "true";
+    Unattended-Upgrade::Automatic-Reboot-Time "03:00";
+EOF
+sed -i "s/%email%/$email/" /etc/apt/apt.conf.d/50unattended-upgrades
+
+cat <<'EOF' > /etc/apt/apt.conf.d/20auto-upgrades
+    APT::Periodic::Enable "1";
+    APT::Periodic::Update-Package-Lists "1";
+    APT::Periodic::Download-Upgradeable-Packages "0";
+    APT::Periodic::Unattended-Upgrade "7";
+    APT::Periodic::AutocleanInterval "21";
+EOF
 
 # Install Docker
 apt install -y apt-transport-https ca-certificates curl software-properties-common
