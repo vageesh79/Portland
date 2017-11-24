@@ -7,7 +7,7 @@
 
 # Get WebUI Password
 read -rp 'User for WebUI: ' WebUser
-read -rsp 'Password for WebUI: ' WebPass
+read -srp 'Password for WebUI: ' WebPass
 
 # Stand Up new rutorrent container
 docker run -d \
@@ -18,7 +18,7 @@ docker run -d \
     --ip="$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).67" \
     --hostname=rutorrent \
     --restart="unless-stopped" \
-    --mount type=bind,source=/vpool/library/temp/.rutorrent/downloads,target=/downloads \
+    --mount type=bind,source=/vpool/library/temp/.rutorrent,target=/downloads \
     --mount type=bind,source=/vpool/library,target=/library \
     --mount type=bind,source=/etc/localtime,target=/etc/localtime:ro \
     -e PHP_MEM=1024M \
