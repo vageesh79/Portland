@@ -13,7 +13,7 @@ docker run -d  \
   --network=macvlan0 \
   --ip "$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).60" \
   --hostname plex \
-  --mount type=volume,source=plex-volume,target=/config \
+  --mount type=bind,source=/vpool/docker-configs/plex,target=/config \
   --mount type=tmpfs,target=/transcode,tmpfs-mode=1777 \
   --mount type=bind,source=/vpool/library/videos,target=/data \
   -e TZ="America/Denver" \
