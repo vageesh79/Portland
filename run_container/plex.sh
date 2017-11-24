@@ -22,6 +22,9 @@ docker run -d  \
   -e PLEX_GID="6846" \
   plexinc/pms-docker:plexpass
 
+# Pause and Give Plex Container Time to download and start web interface
+ sleep 2m;
+
 # Install WebTools Plugin For plex
 ## Create Script to pass to container
 docker exec plex bash -c " \
