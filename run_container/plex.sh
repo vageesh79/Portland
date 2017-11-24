@@ -3,7 +3,7 @@
 # https://www.plex.tv/claim/
 
 # Get Plex account claim token from user
-read -prs 'Claim Token For Plex Account: ' CToken
+read -rsp 'Claim Token For Plex Account: ' CToken
 
 # Stand Up New container
 docker run -d  \
