@@ -53,7 +53,7 @@ EOF
 ###########################################################################################################
 # Setup mail for notifications
 ###########################################################################################################
-apt install -y msmtp msmtp-mta mailutils
+apt install -y msmtp msmtp-mta mailutils s-nail
 
 mkdir /var/log/msmtp
 sudo touch /var/log/msmtp.log
