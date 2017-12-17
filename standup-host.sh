@@ -22,6 +22,9 @@ read -rsp 'SMTP Password: ' smtpPass
 apt update -y
 apt upgrade -y
 
+# Random Needed packages / WebTools (ensures they are installed)
+apt install -y unzip wget curl git
+
 ###########################################################################################################
 # Setup Automatic updates
 ###########################################################################################################
