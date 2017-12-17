@@ -13,6 +13,7 @@ if [ ! -f "/vpool/docker-configs/deluge/openvpn/US Texas.ovpn" ]; then
     mv "openvpn/US Texas.ovpn" /vpool/docker-configs/deluge/openvpn/
     mv openvpn/*.crt /vpool/docker-configs/deluge/openvpn/
     mv openvpn/*.pem /vpool/docker-configs/deluge/openvpn/
+    chown -R curator:curator /vpool/docker-configs/deluge/openvpn
     rm -R openvpn
     rm openvpn.zip
 fi
