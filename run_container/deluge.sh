@@ -7,7 +7,7 @@ read -rsp 'Password for PIA: ' PIAPass
 
 if [ ! -f "/vpool/docker-configs/deluge/openvpn/US Texas.ovpn" ]; then
     wget https://www.privateinternetaccess.com/openvpn/openvpn.zip
-    unzip openvpn.zip
+    unzip openvpn.zip -d openvpn
     rm /vpool/docker-configs/deluge/openvpn/*
     mv "openvpn/US Texas.ovpn" /vpool/docker-configs/deluge/openvpn/
     mv openvpn/*.crt /vpool/docker-configs/deluge/openvpn/
