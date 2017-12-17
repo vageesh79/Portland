@@ -23,11 +23,16 @@ docker run -d  \
   plexinc/pms-docker:plexpass
 
 # Install WebTools Plugin For plex
-## Create Script to pass to container
 pFolder="/vpool/docker-configs/plex/Library/Application Support/Plex Media Server/Plug-ins"
+
+if [ ! -f "${pFolder}/WebTools.bundle" ]; then
+    mkdir -p "${pFolder}/WebTools.bundle"
+else
+    rm -R "${pFolder}/WebTools.bundle"
+fi
+
 wget "$(curl -s https://api.github.com/repos/ukdtom/WebTools.bundle/releases/latest | grep browser_download_url | cut -d '"' -f 4)"
 unzip WebTools.bundle.zip -d WebTools.bundle
-rm -R "${pFolder}/WebTools.bundle"
 mv WebTools.bundle "${pFolder}"
 chown -R curator:curator "${pFolder}"
 rm -R WebTools.bundle.zip
