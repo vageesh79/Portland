@@ -10,12 +10,12 @@ ccovpn=/vpool/docker-configs/deluge/openvpn # Container's /config/openvpn
 if [ ! -f "${ccovpn}/US Texas.ovpn" ]; then
     wget https://www.privateinternetaccess.com/openvpn/openvpn.zip
     unzip openvpn.zip -d openvpn
-    mkdir -p $ccovpn
-    rm $ccovpn/*
-    mv "openvpn/US Texas.ovpn" $ccovpn
-    mv openvpn/*.crt $ccovpn
-    mv openvpn/*.pem $ccovpn
-    chown -R curator:curator $ccovpn
+    rm -R "$ccovpn"
+    mkdir -p "$ccovpn"
+    mv "openvpn/US Texas.ovpn" "$ccovpn"
+    mv openvpn/*.crt "$ccovpn"
+    mv openvpn/*.pem "$ccovpn"
+    chown -R curator:curator "$ccovpn"
     rm -R openvpn
     rm openvpn.zip
 fi
