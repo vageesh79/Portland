@@ -5,10 +5,21 @@
 read -rp 'Username for PIA: ' PIAUser
 read -rsp 'Password for PIA: ' PIAPass
 
+if [ ! -f "/vpool/docker-configs/deluge/openvpn/US Texas.ovpn" ]; then
+    wget https://www.privateinternetaccess.com/openvpn/openvpn.zip
+    unzip openvpn.zip
+    rm /vpool/docker-configs/deluge/openvpn/*
+    mv "openvpn/US Texas.ovpn" /vpool/docker-configs/deluge/openvpn/
+    mv openvpn/*.crt /vpool/docker-configs/deluge/openvpn/
+    mv openvpn/*.pem /vpool/docker-configs/deluge/openvpn/
+    rm -R openvpn
+    rm openvpn.zip
+fi
+
+
 # Stand Up new deluge container
 docker run -d \
     --cap-add=NET_ADMIN \
-    --device=/dev/net/tun \
     --name=deluge \
     --network=macvlan0 \
     --ip="$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).64" \
@@ -22,10 +33,6 @@ docker run -d \
     -e VPN_USER="$PIAUser" \
     -e VPN_PASS="$PIAPass" \
     -e VPN_REMOTE="us-texas.privateinternetaccess.com" \
-    -e VPN_PORT=1198 \
-    -e VPN_PROTOCOL=udp \
-    -e VPN_DEVICE_TYPE=tun \
-    -e STRONG_CERTS=no \
     -e STRICT_PORT_FORWARD=yes \
     -e ENABLE_PRIVOXY=no \
     -e LAN_NETWORK="$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).0/24" \
