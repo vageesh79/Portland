@@ -33,6 +33,6 @@ fi
 
 wget "$(curl -s https://api.github.com/repos/ukdtom/WebTools.bundle/releases/latest | grep browser_download_url | cut -d '"' -f 4)"
 unzip WebTools.bundle.zip -d WebTools.bundle
-mv WebTools.bundle "${pFolder}"
-chown -R curator:curator "${pFolder}"
+mv WebTools.bundle "$pFolder"
+chown -R curator:curator "$pFolder"
 rm -R WebTools.bundle.zip
