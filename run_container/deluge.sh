@@ -1,5 +1,5 @@
 #!/bin/bash
-# https://hub.docker.com/r/paulpoco/arch-delugevpn/
+# https://hub.docker.com/r/binhex/arch-delugevpn/
 
 # get PIA credentials
 read -rp 'Username for PIA: ' PIAUser
