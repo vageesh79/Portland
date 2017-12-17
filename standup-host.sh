@@ -36,7 +36,7 @@ cat <<'EOF' > /etc/apt/apt.conf.d/50unattended-upgrades
         "Docker:${distro_codename}";
     };
     Unattended-Upgrade::Mail "root";
-    Unattended-Upgrade::MailOnlyOnError "true";
+    Unattended-Upgrade::MailOnlyOnError "false";
     Unattended-Upgrade::Remove-Unused-Dependencies "true";
     Unattended-Upgrade::Automatic-Reboot "true";
     Unattended-Upgrade::Automatic-Reboot-Time "03:00";
