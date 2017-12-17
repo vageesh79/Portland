@@ -6,7 +6,7 @@ read -rp 'Username for PIA: ' PIAUser
 read -rsp 'Password for PIA: ' PIAPass
 
 # get PIA openvpn config files and place the needed one in the proper directory
-ccovpn=/vpool/docker-configs/deluge/openvpn # Container's /config/openvpn
+ccovpn="/vpool/docker-configs/deluge/openvpn" # Container's /config/openvpn
 if [ ! -f "${ccovpn}/US Texas.ovpn" ]; then
     wget https://www.privateinternetaccess.com/openvpn/openvpn.zip
     unzip openvpn.zip -d openvpn
