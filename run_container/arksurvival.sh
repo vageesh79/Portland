@@ -22,4 +22,6 @@ docker run -it  \
   -e ADMINPASSWORD=$aPass \
   -e MAX_PLAYERS=20 \
   -e TZ="America/Denver" \
+  -e ARK_UID=4346 \
+  -e ARK_GID=4346 \
   boerngenschmidt/ark-docker
