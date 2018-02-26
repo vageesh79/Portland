@@ -15,7 +15,11 @@ docker run -it  \
   --network=macvlan0 \
   --ip "$(ip route get 8.8.8.8 | cut -d ' ' -f 3 | cut -d '.' -f 1-3).69" \
   --hostname ark \
-  --mount type=volume,source=ark,target=/ark \
+  --mount type=bind,source=/vpool/docker-configs/ark,target=/ark \
   -e SESSIONNAME=tpkark \
+  -e SERVERMAP=TheIsland \
+  -e SERVERPASSWORD=$sPass \
+  -e ADMINPASSWORD=$aPass \
+  -e MAX_PLAYERS=20 \
   -e TZ="America/Denver" \
   boerngenschmidt/ark-docker
